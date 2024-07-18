@@ -3,7 +3,7 @@ const hash = (key) => {
 
     const prime = 31
     for (let i = 0; i < key.length; i++) {
-        hashCode = (prime * hashCode + key.charCodeAt(i)) % 16
+        hashCode = (prime * hashCode + key.charCodeAt(i)) % 17
     }
 
     return hashCode
@@ -18,7 +18,7 @@ class ListNode {
 
 export class HashMap {
     constructor() {
-        this.linkedListArray = new Array(16).fill(null).map(() => new ListNode());
+        this.linkedListArray = new Array(17).fill(null).map(() => new ListNode());
     }
 
     set(key, value) {
@@ -40,6 +40,18 @@ export class HashMap {
         const hashCode = hash(key)
         if (this.linkedListArray[hashCode] !== null) {
             return this.linkedListArray[hashCode].data
+        } else {
+            return null
+        }
+    }
+
+    has(key){
+        const hashCode = hash(key)
+        console.log(this.linkedListArray[hashCode])
+        if(this.linkedListArray[hashCode].data === undefined){
+            return false
+        } else {
+            return true
         }
     }
 
